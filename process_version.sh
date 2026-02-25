@@ -7,10 +7,10 @@ ORG='coredns'
 PROJ='coredns'
 ARCH='loongarch64'
 WORKSPACE="/workspace"
-SRCS="$WORKSPACE/srcs"
 DISTS="$WORKSPACE/dists"
 PATCHES="$WORKSPACE/patches"
-
+BUILD_DIR="/tmp/build"
+SRCS="$BUILD_DIR/srcs"
 mkdir -p "$SRCS" "$DISTS/$VERSION"
 
 SRC="$PROJ-$VERSION"
@@ -27,7 +27,7 @@ prepare()
 
     if [ -d $SRC ]; then rm -rf $SRC; fi
     mkdir -p $SRC
-    tar -xzf $TAR_FILE -C $SRC --strip-components=1 --no-same-owner --no-same-permissions || true
+    tar -xzf $TAR_FILE -C $SRC --strip-components=1
     popd
 }
 
