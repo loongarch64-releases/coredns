@@ -1,7 +1,9 @@
-FROM lcr.loongnix.cn/library/golang:1.25
+FROM lcr.loongnix.cn/library/golang:1.26
 
-RUN apt-get update && apt-get install -y git tar jq && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+         git tar jq \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
 
