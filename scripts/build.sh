@@ -43,6 +43,9 @@ build()
 {
     echo "🔨 [Build] Compiling source code..."
     
+    # 解决 UID 不匹配导致的 git 报错(由 GO 触发)
+    git config --global --add safe.directory /src || true
+
     pushd "${SRCS}/${VERSION}"
     make
     popd
